@@ -4,33 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestiona tu gasto semanal</title>
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" type="text/css" href="./style.css">
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="./index.js"></script>
+    <script src="./main.js"></script>
 </head>
 <body>
     <h1>Gasto Semanal</h1>
-    <section>
-        <h2>Añade tus gastos aqui</h2>
-        <label for="gasto">Gasto:</label>
-        <input type="text" id="gasto">
-        <label for="cantidad">Cantidad</label>
-        <input type="text" id="cantidad">
-        <input type="button" value="Agregar" onclick="validateExpenses()">
-    </section>
-    <section>
-        <h1>Listado</h1>
-        <table>
-            <thead>
-            </thead>
-            <tbody id="tarjeta">
-
-            </tbody>
-        </table>
-        <label for="presupuesto">Presupuesto</label>
-        <input type="text" id="presupuesto" onkeyup="if (event.keyCode === 13) validateBudget()">
-        <label for="restante">Restante</label>
-        <input type="text" id="restante">
-    </section>
+    <main>
+        <section>
+            <h2>Añade tus gastos aqui</h2>
+            <label for="gasto">Gasto:</label>
+            <input type="text" id="gasto" class="ingDato" placeholder="Nombre Gasto">
+            <label for="cantidad">Cantidad:</label>
+            <input type="text" id="cantidad" class="ingDato" placeholder="Cantidad en $">
+            <input type="button" id="agregar" value="Agregar" onclick="validarGastos()">
+        </section>
+        <section>
+            <h2>Listado</h2>
+            <table>
+                <thead>
+                </thead>
+                <tbody id="tarjeta">
+                
+                </tbody>
+            </table>
+            <div id="presupuestodiv" class="card_1">
+                <label for="presupuesto">Presupuesto: $</label>
+                <input type="text" id="presupuesto" onkeyup="if (event.keyCode === 13) validarPresupuesto()">
+            </div>
+            <div id="restantediv" class="card_2">
+                <p class="restante">Restante: $</p>
+                <p class="restante" id="cambRestante"></p>  
+            </div>
+        </section>
+    </main>
 </body>
 </html>
