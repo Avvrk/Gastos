@@ -7,6 +7,7 @@ body {
     font-family: system-ui, -apple-system, BlinkMacSystemFont,
     'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 
     'Open Sans', 'Helvetica Neue', sans-serif;
+    background-color: #f0f0f0;
 }
 
 main {
@@ -21,6 +22,16 @@ main {
     flex-direction: row;
     justify-content: space-around;
     padding: 0px 0px 40px 0px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#barra {
+    max-height: 300px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 section {
@@ -65,8 +76,7 @@ h2 {
 
 #restantediv {
     display: flex;
-    background-color: #dc141454;
-    color: #6e0000;
+    background-color: #00ff0081;
 }
 
 #presupuesto {
@@ -82,7 +92,7 @@ h2 {
 .restante {
     border: 0;
     background-color: #7fd0ff00;
-    color: #6e0000;
+    color: #006900;
 }
 
 input[type=button] {
@@ -124,4 +134,39 @@ td button {
     border: 0;
     padding: 5px 10px;
     border-radius: 2px;
+}
+
+@media (max-width: 1140px) {
+    body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    main {
+        display: flex;
+        flex-direction: column;
+        padding: 20px;
+        max-width: 500px;
+    }
+
+    #gasto,
+    #cantidad {
+        width: 97%;
+    }
+
+    .card_1,
+    .card_2 {
+        width: 95%;
+    }
+}
+
+@media (min-height: 800px) {
+    main {
+        top: 20%;
+    }
+
+    h1 {
+        top: 10%;
+    }
 }

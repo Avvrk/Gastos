@@ -21,20 +21,22 @@
         </section>
         <section>
             <h2>Listado</h2>
-            <table>
-                <thead>
-                </thead>
-                <tbody id="tarjeta">
-                
-                </tbody>
-            </table>
-            <div id="presupuestodiv" class="card_1">
-                <label for="presupuesto">Presupuesto: $</label>
-                <input type="text" id="presupuesto" onkeyup="if (event.keyCode === 13) validarPresupuesto()">
-            </div>
-            <div id="restantediv" class="card_2">
-                <p class="restante">Restante: $</p>
-                <p class="restante" id="cambRestante"></p>  
+            <div id="barra">
+                <div id="presupuestodiv" class="card_1">
+                    <label for="presupuesto">Presupuesto: $</label>
+                    <input type="text" id="presupuesto" onkeyup="if (event.keyCode === 13) validarPresupuesto()">
+                </div>
+                <div id="restantediv" class="card_2">
+                    <p class="restante">Restante: $</p>
+                    <p class="restante" id="cambRestante"></p>  
+                </div>
+                <table>
+                    <thead>
+                    </thead>
+                    <tbody id="tarjeta">
+                    
+                    </tbody>
+                </table>
             </div>
         </section>
     </main>

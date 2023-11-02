@@ -2,6 +2,21 @@ let presupuesto = 0;
 let gastos = [];
 let presupuestoRestante = 0;
 
+// function formatoNumerico(numero) { 
+//     if (typeof numero === 'number') {
+//         numero = numero.toString();
+//     }
+
+//     if (numero.lenght >= 4 && numero.lenght <= 9){
+//         let formatoActualizado = numero.split("");
+//         formatoActualizado.splice(-3, 0, ".");
+//         if (numero.lenght == 7 || numero.lenght == 8 || numero.lenght == 9){
+//             formatoActualizado.splice(-7, 0, ".");
+//         }
+//         return formatoActualizado.join("");
+//     }
+// }
+
 function validarGastos() {
     let gasto = document.getElementById('gasto').value;
     let cantidad = parseFloat(document.getElementById('cantidad').value);
@@ -20,6 +35,8 @@ function validarGastos() {
             registrarGasto(gasto, cantidad);
             presupuestoRestante -= cantidad;
             actualizarPresupuestoRestante();
+            cambiarColor()
+            invalitarBoton()
         }
     }
 }
@@ -33,6 +50,9 @@ function validarPresupuesto() {
         presupuesto = presupuestoIngresado;
         presupuestoRestante = presupuestoIngresado;
         actualizarPresupuestoRestante();
+
+        document.getElementById('presupuesto').value = presupuesto;
+        document.getElementById('cambRestante').textContent = presupuestoRestante;
     }
 }
 
@@ -43,7 +63,6 @@ function registrarGasto(gasto, cantidad) {
     });
 
     document.getElementById("tarjeta").innerHTML = "";
-
     mostrarGastos();
 }
 
@@ -58,7 +77,7 @@ function mostrarGastos() {
 
         botonEliminar.textContent = 'Borrar';
         botonEliminar.addEventListener('click', () => {
-            eliminarGasto(item, index);
+            eliminarGasto(index);
         });
 
         nombre.textContent = item.nombre;
@@ -81,7 +100,7 @@ function mostrarGastos() {
     });
 }
 
-function eliminarGasto(item, index) {
+function eliminarGasto(index) {
     let i = index;
     const cantidadADevolver = gastos[i].cantidad;
     gastos.splice(i, 1);
@@ -93,8 +112,35 @@ function eliminarGasto(item, index) {
 
     presupuestoRestante += cantidadADevolver;
     actualizarPresupuestoRestante();
+    cambiarColor()
+    invalitarBoton()
 }
 
 function actualizarPresupuestoRestante() {
-    document.getElementById('cambRestante').textContent = presupuestoRestante.toFixed(2);
+    document.getElementById('cambRestante').textContent = presupuestoRestante;
+}
+
+function cambiarColor() {
+    let presupuestoPc = (presupuestoRestante / presupuesto) * 100;
+    let capsula = document.getElementById('restantediv');
+    let contenido1 = document.querySelector('.restante');
+    let contenido2 = document.getElementById('cambRestante');
+
+    if (presupuestoPc <= 20) {
+        capsula.style.backgroundColor = 'rgba(220, 20, 20, 0.33)';
+        contenido1.style.color = 'rgba(110, 0, 0, 1)';
+        contenido2.style.color = 'rgba(110, 0, 0, 1)';
+    } else {
+        capsula.style.backgroundColor = 'rgba(0, 255, 0, 0.33)';
+        contenido1.style.color = 'rgba(0, 105, 0, 1)';
+        contenido2.style.color = 'rgba(0, 105, 0, 1)';
+    }
+}
+
+function invalitarBoton() {
+    if (presupuestoRestante == 0){
+        document.getElementById('agregar').disabled = true;
+    }else {
+        document.getElementById('agregar').disabled = false;
+    }
 }
